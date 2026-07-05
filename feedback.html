@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Your thoughts · IlmiTales</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💛</text></svg>">
+<script defer data-domain="YOUR-SITE.netlify.app" src="https://plausible.io/js/script.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{--paper:#FBF5EA;--card:#fff;--ink:#3A3126;--ink-soft:#8A7D6B;--gold:#DFA23C;
+    --gold-soft:#FBEFD3;--weave:#7C5CBF;--line:#EFE4D2;
+    --shadow:0 8px 22px rgba(58,49,38,.10);--shadow-lg:0 16px 38px rgba(58,49,38,.16)}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:'Nunito',sans-serif;color:var(--ink);min-height:100vh;
+    background:radial-gradient(120% 40% at 100% 0%,#F8E6CC 0%,transparent 55%),
+    radial-gradient(120% 40% at 0% 100%,#EDE6F6 0%,transparent 55%),var(--paper);
+    display:flex;justify-content:center;padding:18px 14px 70px;line-height:1.55}
+  .app{width:100%;max-width:460px}
+  h1,h2{font-family:'Baloo 2',cursive}
+  .home{display:inline-block;text-decoration:none;color:var(--ink-soft);font-weight:800;
+    font-size:.85rem;margin-bottom:16px}
+  .hero{text-align:center;margin-bottom:20px}
+  .hero .fe{font-size:2.6rem}
+  .hero h1{font-size:1.7rem;margin:6px 0 4px}
+  .hero p{color:var(--ink-soft);font-weight:700;font-size:.92rem}
+  form{background:var(--card);border:2px solid var(--line);border-radius:22px;padding:20px;
+    box-shadow:var(--shadow-lg);display:flex;flex-direction:column;gap:16px}
+  label{font-family:'Baloo 2';font-weight:700;font-size:.98rem;display:block;margin-bottom:6px}
+  .stars{display:flex;gap:6px;justify-content:center;flex-direction:row-reverse}
+  .stars input{display:none}
+  .stars label{font-size:2.1rem;cursor:pointer;filter:grayscale(1);opacity:.4;transition:all .12s;margin:0}
+  .stars input:checked ~ label,.stars label:hover,.stars label:hover ~ label{filter:none;opacity:1;transform:scale(1.08)}
+  textarea,input[type=text],input[type=email]{width:100%;border:2px solid var(--line);border-radius:13px;
+    padding:11px 13px;font-family:'Nunito';font-weight:700;font-size:.93rem;color:var(--ink);
+    background:#FDFAF3;resize:vertical}
+  textarea{min-height:76px}
+  textarea:focus,input:focus{outline:none;border-color:var(--weave)}
+  .hint{font-weight:700;font-size:.78rem;color:var(--ink-soft);margin-top:4px}
+  button{border:none;cursor:pointer;background:var(--weave);color:#fff;font-family:'Baloo 2';
+    font-weight:700;font-size:1.05rem;padding:14px;border-radius:15px;
+    box-shadow:0 8px 20px rgba(124,92,191,.35);transition:transform .12s}
+  button:hover{transform:translateY(-2px)}
+  .hp{display:none}
+</style>
+</head>
+<body>
+<div class="app">
+  <a class="home" href="index.html">← Back to all chapters</a>
+  <div class="hero">
+    <div class="fe">💛</div>
+    <h1>How was the journey?</h1>
+    <p>Your words shape Series 2. Every answer goes straight to the author.</p>
+  </div>
+
+  <form name="course-feedback" method="POST" action="thanks.html" data-netlify="true" netlify-honeypot="bot-field">
+    <input type="hidden" name="form-name" value="course-feedback">
+    <p class="hp"><label>Don't fill this out: <input name="bot-field"></label></p>
+
+    <div>
+      <label style="text-align:center">⭐ How would you rate the course?</label>
+      <div class="stars">
+        <input type="radio" id="s5" name="rating" value="5 - Loved it" required><label for="s5">⭐</label>
+        <input type="radio" id="s4" name="rating" value="4 - Really good"><label for="s4">⭐</label>
+        <input type="radio" id="s3" name="rating" value="3 - Good"><label for="s3">⭐</label>
+        <input type="radio" id="s2" name="rating" value="2 - Okay"><label for="s2">⭐</label>
+        <input type="radio" id="s1" name="rating" value="1 - Needs work"><label for="s1">⭐</label>
+      </div>
+    </div>
+
+    <div>
+      <label>🌟 What did you (or your child) find most helpful or fun?</label>
+      <textarea name="helpful" placeholder="A favorite chapter, activity, or moment…"></textarea>
+    </div>
+
+    <div>
+      <label>🔧 What could be better?</label>
+      <textarea name="improve" placeholder="Anything confusing, too easy, too hard…"></textarea>
+    </div>
+
+    <div>
+      <label>🗺️ What should Ali explore in Series 2?</label>
+      <textarea name="topics" placeholder="Topics you'd love future chapters to cover…"></textarea>
+    </div>
+
+    <div>
+      <label>✉️ Your name & email (optional)</label>
+      <input type="text" name="name" placeholder="Name">
+      <div style="height:8px"></div>
+      <input type="email" name="email" placeholder="Email - only if you'd like a reply">
+      <div class="hint">Never shared, never spammed. Only used to say thank you.</div>
+    </div>
+
+    <button type="submit">Send it to the author 🧶</button>
+  </form>
+</div>
+</body>
+</html>

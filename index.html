@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>IlmiTales · Ali and the Story-Weaver · An interactive storybook about AI</title>
+<meta name="description" content="8 illustrated, playable chapters that teach kids and beginners what AI really is - through one boy's journey across Turkey with a story-weaving companion named Rafeeq.">
+<meta property="og:title" content="IlmiTales · Ali and the Story-Weaver">
+<meta property="og:description" content="A journey through learning, patterns, and what makes us human. 8 free interactive chapters about AI for kids and curious grown-ups.">
+<meta property="og:image" content="/assets/thumbs/m1.jpg">
+<meta property="og:type" content="website">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🧶</text></svg>">
+<!-- ANALYTICS: after signing up at plausible.io, replace data-domain with your real domain. Or delete this line to run without analytics. -->
+<script defer data-domain="YOUR-SITE.netlify.app" src="https://plausible.io/js/script.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#FBF5EA;
+    --card:#FFFFFF;
+    --ink:#3A3126;
+    --ink-soft:#8A7D6B;
+    --gold:#DFA23C;
+    --gold-soft:#FBEFD3;
+    --weave:#7C5CBF;
+    --leaf:#3E8E5A;
+    --leaf-soft:#E0F2E7;
+    --line:#EFE4D2;
+    --shadow:0 8px 22px rgba(58,49,38,.10);
+    --shadow-lg:0 16px 38px rgba(58,49,38,.16);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{
+    font-family:'Nunito',sans-serif;color:var(--ink);min-height:100vh;
+    background:
+      radial-gradient(120% 40% at 100% 0%, #F8E6CC 0%, transparent 55%),
+      radial-gradient(120% 40% at 0% 100%, #EDE6F6 0%, transparent 55%),
+      var(--paper);
+    display:flex;justify-content:center;padding:16px 14px 70px;line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+  }
+  .app{width:100%;max-width:520px}
+  h1,h2,h3{font-family:'Baloo 2',cursive}
+
+  /* header */
+  .topbar{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px}
+  .brand{font-family:'Baloo 2';font-weight:800;font-size:1rem;display:flex;align-items:center;gap:7px}
+  .lang{display:flex;border:2px solid var(--line);border-radius:999px;overflow:hidden;background:#fff}
+  .lang button{border:none;background:transparent;cursor:pointer;font-family:'Baloo 2';
+    font-weight:700;font-size:.85rem;padding:6px 14px;color:var(--ink-soft);transition:all .15s}
+  .lang button.on{background:var(--ink);color:#fff}
+  .lang-toast{position:fixed;left:50%;bottom:28px;transform:translateX(-50%) translateY(80px);
+    background:var(--ink);color:#fff;font-weight:800;font-size:.9rem;padding:13px 22px;
+    border-radius:14px;box-shadow:var(--shadow-lg);transition:transform .35s ease;z-index:99;
+    text-align:center;max-width:90vw}
+  .lang-toast.show{transform:translateX(-50%) translateY(0)}
+
+  /* hero */
+  .hero{text-align:center;margin-bottom:26px}
+  .eyebrow{display:inline-block;background:var(--gold-soft);color:#8A6410;font-weight:800;
+    font-size:.72rem;letter-spacing:.07em;text-transform:uppercase;padding:5px 14px;border-radius:999px}
+  .hero h1{font-size:2.5rem;font-weight:800;line-height:1.05;margin:14px 0 8px}
+  .hero h1 .w{color:var(--weave)}
+  .tagline{font-family:'Baloo 2';font-weight:700;font-size:1.08rem;color:var(--gold)}
+  .hero p.sub{margin-top:10px;color:var(--ink-soft);font-weight:700;font-size:.95rem;
+    max-width:420px;margin-left:auto;margin-right:auto}
+  .cta{display:inline-block;margin-top:18px;background:var(--weave);color:#fff;text-decoration:none;
+    font-family:'Baloo 2';font-weight:700;font-size:1.1rem;padding:14px 30px;border-radius:16px;
+    box-shadow:0 10px 24px rgba(124,92,191,.35);transition:transform .12s}
+  .cta:hover{transform:translateY(-3px)}
+
+  /* progress */
+  .prog{background:var(--card);border:2px solid var(--line);border-radius:18px;
+    padding:14px 16px;box-shadow:var(--shadow);margin-bottom:24px}
+  .prog .pl{display:flex;justify-content:space-between;font-weight:800;font-size:.85rem;margin-bottom:8px}
+  .prog .pl b{color:var(--leaf)}
+  .pbar{height:12px;background:#F1E9DA;border-radius:99px;overflow:hidden}
+  .pbar i{display:block;height:100%;width:0%;border-radius:99px;
+    background:linear-gradient(90deg,var(--gold),var(--leaf));transition:width .6s ease}
+
+  /* chapter shelf */
+  .shelf-title{font-size:1.35rem;margin-bottom:12px}
+  .shelf{display:flex;flex-direction:column;gap:14px}
+  .chap{display:flex;gap:0;background:var(--card);border-radius:20px;overflow:hidden;
+    border:2px solid var(--line);box-shadow:var(--shadow);text-decoration:none;color:var(--ink);
+    transition:transform .15s,box-shadow .15s;position:relative}
+  .chap:hover{transform:translateY(-3px);box-shadow:var(--shadow-lg)}
+  .chap .thumb{flex:0 0 118px;background-size:cover;background-position:center;min-height:112px;position:relative}
+  .chap .thumb::after{content:'';position:absolute;inset:0;background:linear-gradient(90deg,transparent 60%,rgba(255,255,255,.25))}
+  .chap .body{padding:12px 14px;flex:1;display:flex;flex-direction:column;justify-content:center}
+  .chap .num{font-weight:800;font-size:.68rem;letter-spacing:.06em;text-transform:uppercase;margin-bottom:2px}
+  .chap h3{font-size:1.04rem;line-height:1.15}
+  .chap .cs{color:var(--ink-soft);font-weight:700;font-size:.78rem;margin-top:3px}
+  .chap .mins{color:var(--ink-soft);font-weight:800;font-size:.72rem;margin-top:5px}
+  .tick{position:absolute;top:8px;left:8px;width:28px;height:28px;border-radius:50%;
+    background:var(--leaf);color:#fff;display:none;place-items:center;font-size:.9rem;
+    box-shadow:0 3px 8px rgba(0,0,0,.25);z-index:2}
+  .chap.done .tick{display:grid}
+  .chap.done .thumb::before{content:'';position:absolute;inset:0;background:rgba(62,142,90,.18);z-index:1}
+
+  /* series 2 teaser */
+  .teaser{margin-top:14px;border:2px dashed #D9C9E8;border-radius:20px;padding:18px;
+    background:linear-gradient(135deg,#F6F1FC,#FDF6EC);display:flex;gap:14px;align-items:center}
+  .teaser .lock{font-size:2rem}
+  .teaser h3{font-size:1.05rem;color:var(--weave)}
+  .teaser p{color:var(--ink-soft);font-weight:700;font-size:.85rem}
+
+  /* about + footer */
+  .about{margin-top:28px;background:var(--card);border:2px solid var(--line);border-radius:20px;
+    padding:18px;box-shadow:var(--shadow)}
+  .about h2{font-size:1.2rem;margin-bottom:6px}
+  .about p{font-weight:700;font-size:.92rem;color:var(--ink-soft)}
+  .about p b{color:var(--ink)}
+  .fbrow{margin-top:14px;display:flex;gap:10px;flex-wrap:wrap}
+  .fbrow a{flex:1;min-width:170px;text-align:center;text-decoration:none;font-family:'Baloo 2';
+    font-weight:700;font-size:.95rem;padding:12px;border-radius:14px;transition:transform .12s}
+  .fbrow a:hover{transform:translateY(-2px)}
+  .fbrow .f1{background:var(--gold-soft);color:#8A6410;border:2px solid #EFD9A6}
+  footer{margin-top:26px;text-align:center;color:var(--ink-soft);font-weight:700;font-size:.8rem}
+  footer span{color:#C0392B}
+</style>
+</head>
+<body>
+<div class="app">
+
+  <div class="topbar">
+    <div class="brand">🧶 IlmiTales</div>
+    <div class="lang">
+      <button class="on" id="langEn" onclick="setLang('en')">EN</button>
+      <button id="langAr" onclick="setLang('ar')">عربي</button>
+    </div>
+  </div>
+
+  <div class="hero">
+    <span class="eyebrow">📖 IlmiTales · Series 1</span>
+    <h1>Ali and the <span class="w">Story-Weaver</span></h1>
+    <div class="tagline">A journey through learning, patterns, and what makes us human</div>
+    <p class="sub" style="font-family:'Baloo 2',cursive;color:#7C5CBF;font-size:1rem">“Every great journey begins with curiosity. Every deep understanding begins with a story.”</p>
+    <p class="sub">8 illustrated, playable chapters. Follow Ali across Turkey as he teaches Rafeeq, a machine that has read every story but lived none, and discover what AI really is. For kids 6+ and curious grown-ups. Free, forever.</p>
+    <a class="cta" id="ctaBtn" href="modules/module-01-cat-in-the-courtyard.html">Begin the journey ✨</a>
+  </div>
+
+  <div class="prog">
+    <div class="pl"><span>Your journey</span><b id="progLabel">0 of 8 chapters</b></div>
+    <div class="pbar"><i id="progFill"></i></div>
+  </div>
+
+  <h2 class="shelf-title">📚 The chapters</h2>
+  <div class="shelf" id="shelf"></div>
+
+  <div class="teaser">
+    <div class="lock">🔒</div>
+    <div>
+      <h3>Series 2 · Coming Soon</h3>
+      <p>Ali's next adventure is being woven… New places, new questions, and Rafeeq like you've never seen him.</p>
+    </div>
+  </div>
+
+  <div class="about">
+    <h2>🤲 For parents & teachers</h2>
+    <p>Every chapter is <b>one story, one big idea, and hands-on activities</b> - training a model by swiping, tipping a feature scale, fixing a biased dataset. No account needed, nothing to install, works on any phone or laptop. Illustrations follow a respectful no-eyes style throughout. Progress saves automatically on this device.</p>
+    <div class="fbrow">
+      <a class="f1" href="feedback.html">💛 Rate the course & suggest topics</a>
+    </div>
+  </div>
+
+  <footer>IlmiTales · Made with <span>♥</span> in Kuwait · <a href="feedback.html" style="color:inherit">Feedback</a></footer>
+</div>
+
+<div class="lang-toast" id="langToast">🌙 النسخة العربية قادمة قريباً<br>The Arabic version is coming soon!</div>
+
+<script>
+const chapters=[
+ {id:'m1',file:'module-01-cat-in-the-courtyard.html',n:1,t:'The Cat in the Courtyard',s:'How a brain learns without any rules',min:5,c:'#D2734A'},
+ {id:'m2',file:'module-02-the-game-of-clues.html',n:2,t:'The Game of Clues',s:'Little clues, big patterns, the power to predict',min:5,c:'#3E3A6D'},
+ {id:'m3',file:'module-03-story-weaver-who-knew-nothing.html',n:3,t:'The Story-Weaver Who Knew Nothing',s:'Teaching a machine with nothing but examples',min:6,c:'#7C5CBF'},
+ {id:'m4',file:'module-04-eyes-of-the-story-weaver.html',n:4,t:'The Eyes of the Story-Weaver',s:"A detective's checklist: how machines see",min:5,c:'#1E8E9E'},
+ {id:'m5',file:'module-05-warmer-and-colder.html',n:5,t:'The Game of Warmer and Colder',s:"Learning from the world's tiny nudges",min:6,c:'#A4566E'},
+ {id:'m6',file:'module-06-the-mirror-that-dreams.html',n:6,t:'The Mirror That Dreams',s:'Tokens, prompts, and the mirror that weaves',min:6,c:'#B8860B'},
+ {id:'m7',file:'module-07-closed-kebab-shop.html',n:7,t:'The Closed Kebab Shop and the Broken Thread',s:'Broken threads, and why you keep pedaling',min:6,c:'#B5432F'},
+ {id:'m8',file:'module-08-heart-no-story-can-weave.html',n:8,t:'The Heart That No Story Can Weave',s:'What machines can do, and what only you can',min:7,c:'#D96941'}
+];
+const shelf=document.getElementById('shelf');
+let doneCount=0, firstUndone=null;
+chapters.forEach(ch=>{
+  const done=(()=>{try{return localStorage.getItem('asw_'+ch.id)==='1'}catch(e){return false}})();
+  if(done)doneCount++;
+  else if(firstUndone===null)firstUndone=ch;
+  const a=document.createElement('a');
+  a.className='chap'+(done?' done':'');
+  a.href='modules/'+ch.file;
+  a.innerHTML=`
+    <div class="tick">✓</div>
+    <div class="thumb" style="background-image:url('assets/thumbs/${ch.id}.jpg')"></div>
+    <div class="body">
+      <div class="num" style="color:${ch.c}">Chapter ${ch.n}</div>
+      <h3>${ch.t}</h3>
+      <div class="cs">${ch.s}</div>
+      <div class="mins">⏱ ${ch.min} min ${done?'· ✅ completed':''}</div>
+    </div>`;
+  shelf.appendChild(a);
+});
+document.getElementById('progLabel').textContent=doneCount+' of 8 chapters';
+document.getElementById('progFill').style.width=(doneCount/8*100)+'%';
+const cta=document.getElementById('ctaBtn');
+if(doneCount===8){cta.textContent='Read it all again 🌅';}
+else if(doneCount>0&&firstUndone){cta.textContent='Continue: Chapter '+firstUndone.n+' →';cta.href='modules/'+firstUndone.file;}
+
+function setLang(l){
+  document.getElementById('langEn').classList.toggle('on',l==='en');
+  document.getElementById('langAr').classList.toggle('on',l==='ar');
+  try{localStorage.setItem('asw_lang',l)}catch(e){}
+  if(l==='ar'){
+    const t=document.getElementById('langToast');
+    t.classList.add('show');
+    setTimeout(()=>{t.classList.remove('show');
+      document.getElementById('langAr').classList.remove('on');
+      document.getElementById('langEn').classList.add('on');},2600);
+    if(window.plausible)plausible('arabic_interest');
+  }
+}
+</script>
+</body>
+</html>
