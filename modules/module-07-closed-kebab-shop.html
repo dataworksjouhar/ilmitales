@@ -186,7 +186,7 @@
   @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 </style>
 <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🧶</text></svg>">
-<script defer data-domain="ilmitales.com" src="https://plausible.io/js/script.js"></script>
+<script data-goatcounter="https://ilmitales.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 </head>
 <body>
 <div class="app">
@@ -232,7 +232,7 @@
 
   <!-- STORY part 2 -->
   <div class="story">
-    <div class="narr">Papa knelt down, his face gentle and serious.</div>
+    <div class="narr">Baba knelt down, his face gentle and serious.</div>
     <div class="say b"><div class="who">Baba</div><div class="bub">"This is one of the most important lessons, Ali. Rafeeq wants to please you. He wove his answer from the reviews he has read. But most of those reviews were written by tourists who came during a single summer festival, and the stories haven't been updated. The tapestry he wove about the city's restaurants has a <em>bias</em> - it only shows one small piece of the truth."</div></div>
     <div class="say a"><div class="who">Ali</div><div class="bub">"What's <em>bias</em>?"</div></div>
     <div class="say b"><div class="who">Baba</div><div class="bub">"It's when the threads Rafeeq learned from aren't fair or complete. Imagine if you only ever heard stories about <em>red apples</em> your whole life, and then I asked you to describe an apple. You'd say red, but you'd be wrong about the green and yellow ones. Rafeeq's threads were incomplete. They didn't include the grandmothers who cook at home, or the shops that open only in winter, or the voices of the people who actually live here. A biased story leads you to the wrong place."</div></div>
@@ -547,7 +547,7 @@ function burst(){
   new MutationObserver(function(){
     if(res.classList.contains('show')){
       try{localStorage.setItem('asw_m7','1');}catch(e){}
-      if(window.plausible)plausible('module_complete',{props:{module:'m7'}});
+      if(window.goatcounter&&window.goatcounter.count)goatcounter.count({path:'module_complete-m7',event:true});
     }
   }).observe(res,{attributes:true});
 })();

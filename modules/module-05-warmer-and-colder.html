@@ -190,7 +190,7 @@
   @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 </style>
 <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🧶</text></svg>">
-<script defer data-domain="ilmitales.com" src="https://plausible.io/js/script.js"></script>
+<script data-goatcounter="https://ilmitales.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 </head>
 <body>
 <div class="app">
@@ -350,7 +350,7 @@
     There are two ways to learn. With a teacher: <b>examples with answers</b>. Without one: <b>try → get a nudge → adjust</b>. Bikes, kittens, teacups, and Rafeeq - the world's feedback is a teacher too.
   </div>
 
-  <div class="nextup">Next chapter → On a train through green hills, Ali asks Rafeeq about Paris… and discovers that <b>HOW you ask changes everything</b>. 🚂🪞</div>
+  <div class="nextup">Next chapter → On a train through green hills, Ali asks Rafeeq about Istanbul… and discovers that <b>HOW you ask changes everything</b>. 🚂🪞</div>
 
 
   <div class="asw-nav"><a class="prev" href="module-04-eyes-of-the-story-weaver.html">← Chapter 4</a><a class="next" href="module-06-the-mirror-that-dreams.html">Chapter 6 →</a></div>
@@ -605,7 +605,7 @@ function burst(){
   new MutationObserver(function(){
     if(res.classList.contains('show')){
       try{localStorage.setItem('asw_m5','1');}catch(e){}
-      if(window.plausible)plausible('module_complete',{props:{module:'m5'}});
+      if(window.goatcounter&&window.goatcounter.count)goatcounter.count({path:'module_complete-m5',event:true});
     }
   }).observe(res,{attributes:true});
 })();
