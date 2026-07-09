@@ -186,7 +186,7 @@
   @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 </style>
 <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🧶</text></svg>">
-<script defer data-domain="ilmitales.com" src="https://plausible.io/js/script.js"></script>
+<script data-goatcounter="https://ilmitales.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 </head>
 <body>
 <div class="app">
@@ -197,6 +197,8 @@
   <h1 class="title">The Cat in the Courtyard</h1>
   <div class="subtitle">How a brain learns without any rules</div>
   <p class="meta">⏱ 5 min · Ali and the Story-Weaver</p>
+
+  <div class="asw-prog"></div>
 
   <!-- ======= HERO SCENE : courtyard, grandmother + Ali (faces, no eyes), gray cat ======= -->
   <div class="scene">
@@ -569,6 +571,16 @@ function burst(){
 .asw-top{display:block;text-decoration:none;color:inherit;opacity:.65;font-weight:800;
   font-size:.82rem;margin-bottom:14px;font-family:'Nunito',sans-serif}
 .asw-top:hover{opacity:1}
+.asw-prog{display:flex;align-items:center;gap:5px;margin-top:10px;
+  font-family:'Baloo 2',cursive;font-weight:700;font-size:.78rem;opacity:.9}
+.asw-prog span{margin-right:7px}
+.asw-prog i{width:9px;height:9px;border-radius:50%;background:rgba(0,0,0,.13);flex:0 0 auto}
+.asw-prog i.done{background:#3E8E5A}
+.asw-prog i.cur{background:#DFA23C;transform:scale(1.3)}
+.asw-continue{display:block;margin-top:18px;background:#7C5CBF;color:#fff;text-decoration:none;
+  font-family:'Baloo 2',cursive;font-weight:700;font-size:1.05rem;padding:14px;border-radius:14px;
+  box-shadow:0 8px 20px rgba(124,92,191,.35);transition:transform .12s}
+.asw-continue:hover{transform:translateY(-2px)}
 .asw-nav{display:flex;gap:10px;margin-top:26px;font-family:'Baloo 2',cursive}
 .asw-nav a{flex:1;text-align:center;text-decoration:none;font-weight:700;font-size:.95rem;
   padding:13px 8px;border-radius:14px;transition:transform .12s;border:2px solid rgba(0,0,0,.08)}
@@ -578,12 +590,30 @@ function burst(){
 </style>
 <script>
 (function(){
+  var CUR=1, TOTAL=8;
+  var host=document.querySelector('.asw-prog');
+  if(host){
+    var lab=document.createElement('span');
+    lab.textContent='Chapter '+CUR+' of '+TOTAL;
+    host.appendChild(lab);
+    for(var i=1;i<=TOTAL;i++){
+      var d=document.createElement('i');
+      try{if(localStorage.getItem('asw_m'+i)==='1')d.className='done';}catch(e){}
+      if(i===CUR)d.className='cur';
+      host.appendChild(d);
+    }
+  }
   var res=document.getElementById('result');
   if(!res)return;
   new MutationObserver(function(){
-    if(res.classList.contains('show')){
+    if(res.classList.contains('show') && !res.querySelector('.asw-continue')){
       try{localStorage.setItem('asw_m1','1');}catch(e){}
       if(window.plausible)plausible('module_complete',{props:{module:'m1'}});
+      var a=document.createElement('a');
+      a.className='asw-continue';
+      a.href='module-02-the-game-of-clues.html';
+      a.textContent='Continue to Chapter 2 →';
+      res.appendChild(a);
     }
   }).observe(res,{attributes:true});
 })();
