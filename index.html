@@ -120,6 +120,16 @@
   .fbrow .f1{background:var(--gold-soft);color:#8A6410;border:2px solid #EFD9A6}
   footer{margin-top:26px;text-align:center;color:var(--ink-soft);font-weight:700;font-size:.8rem}
   footer span{color:#C0392B}
+
+  .certcard{margin-top:14px;display:flex;gap:14px;align-items:center;text-decoration:none;
+    border-radius:20px;padding:18px;border:2px dashed #E8D5A8;background:linear-gradient(135deg,#FDF6E4,#FDF9F0);
+    color:inherit;transition:transform .15s}
+  .certcard .ce{font-size:2rem}
+  .certcard h3{font-size:1.05rem;color:#B8860B}
+  .certcard p{color:var(--ink-soft);font-weight:700;font-size:.85rem}
+  .certcard.ready{border-style:solid;border-color:var(--gold);background:linear-gradient(135deg,#FBEFD3,#FDF3DD);
+    box-shadow:0 10px 26px rgba(223,162,60,.28);cursor:pointer}
+  .certcard.ready:hover{transform:translateY(-3px)}
 </style>
 </head>
 <body>
@@ -158,6 +168,15 @@
     </div>
   </div>
 
+
+  <a class="certcard" id="certCard" href="certificate.html">
+    <div class="ce" id="certEmoji">🔒</div>
+    <div>
+      <h3 id="certTitle">Your AI Explorer Certificate</h3>
+      <p id="certText">Finish all 8 chapters to earn a printable certificate with your name on it.</p>
+    </div>
+  </a>
+
   <div class="about">
     <h2>🤲 For parents & teachers</h2>
     <p>Every chapter is <b>one story, one big idea, and hands-on activities</b> - training a model by swiping, tipping a feature scale, fixing a biased dataset. No account needed, nothing to install, works on any phone or laptop. Illustrations follow a respectful no-eyes style throughout. Progress saves automatically on this device.</p>
@@ -178,7 +197,7 @@ const chapters=[
  {id:'m3',file:'module-03-story-weaver-who-knew-nothing.html',n:3,t:'The Story-Weaver Who Knew Nothing',s:'Teaching a machine with nothing but examples',min:6,c:'#7C5CBF'},
  {id:'m4',file:'module-04-eyes-of-the-story-weaver.html',n:4,t:'The Eyes of the Story-Weaver',s:"A detective's checklist: how machines see",min:5,c:'#1E8E9E'},
  {id:'m5',file:'module-05-warmer-and-colder.html',n:5,t:'The Game of Warmer and Colder',s:"Learning from the world's tiny nudges",min:6,c:'#A4566E'},
- {id:'m6',file:'module-06-the-mirror-that-dreams.html',n:6,t:'The Mirror That Dreams',s:'Tokens, prompts, and the mirror that weaves',min:6,c:'#B8860B'},
+ {id:'m6',file:'module-06-the-mirror-that-dreams.html',n:6,t:'The Mirror That Weaves',s:'Tokens, prompts, and how asking shapes the answer',min:6,c:'#B8860B'},
  {id:'m7',file:'module-07-closed-kebab-shop.html',n:7,t:'The Closed Kebab Shop and the Broken Thread',s:'Broken threads, and why you keep pedaling',min:6,c:'#B5432F'},
  {id:'m8',file:'module-08-heart-no-story-can-weave.html',n:8,t:'The Heart That No Story Can Weave',s:'What machines can do, and what only you can',min:7,c:'#D96941'}
 ];
@@ -207,6 +226,17 @@ document.getElementById('progFill').style.width=(doneCount/8*100)+'%';
 const cta=document.getElementById('ctaBtn');
 if(doneCount===8){cta.textContent='Read it all again 🌅';}
 else if(doneCount>0&&firstUndone){cta.textContent='Continue: Chapter '+firstUndone.n+' →';cta.href='modules/'+firstUndone.file;}
+
+
+const cc=document.getElementById('certCard');
+if(doneCount===8){
+  cc.classList.add('ready');
+  document.getElementById('certEmoji').textContent='🏅';
+  document.getElementById('certTitle').textContent='Your AI Explorer Certificate is ready!';
+  document.getElementById('certText').textContent='All 8 chapters complete. Tap to add your name and print it.';
+}else{
+  document.getElementById('certText').textContent='Finish all 8 chapters to earn a printable certificate with your name on it. ('+doneCount+' of 8 done)';
+}
 
 function setLang(l){
   document.getElementById('langEn').classList.toggle('on',l==='en');

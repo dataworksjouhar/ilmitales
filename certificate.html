@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Your AI Explorer Certificate · IlmiTales</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🏅</text></svg>">
+<script defer data-domain="ilmitales.com" src="https://plausible.io/js/script.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Nunito:wght@600;700;800&family=Caveat:wght@700&display=swap" rel="stylesheet">
+<style>
+  :root{--paper:#FBF5EA;--ink:#3A3126;--ink-soft:#8A7D6B;--gold:#DFA23C;--gold-deep:#B8860B;
+    --weave:#7C5CBF;--leaf:#3E8E5A;--line:#EFE4D2;
+    --shadow-lg:0 16px 38px rgba(58,49,38,.16)}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:'Nunito',sans-serif;color:var(--ink);min-height:100vh;
+    background:radial-gradient(120% 40% at 100% 0%,#F8E6CC 0%,transparent 55%),
+    radial-gradient(120% 40% at 0% 100%,#EDE6F6 0%,transparent 55%),var(--paper);
+    display:flex;justify-content:center;padding:18px 14px 70px;line-height:1.5}
+  .app{width:100%;max-width:520px}
+  h1,h2{font-family:'Baloo 2',cursive}
+  .home{display:inline-block;text-decoration:none;color:var(--ink-soft);font-weight:800;
+    font-size:.85rem;margin-bottom:16px}
+
+  /* locked state */
+  .locked{display:none;text-align:center;background:#fff;border:2px solid var(--line);
+    border-radius:24px;padding:34px 24px;box-shadow:var(--shadow-lg)}
+  .locked .fe{font-size:3rem}
+  .locked h1{font-size:1.5rem;margin:10px 0 6px}
+  .locked p{font-weight:700;color:var(--ink-soft)}
+  .locked .pbar{height:12px;background:#F1E9DA;border-radius:99px;overflow:hidden;margin:18px 0 8px}
+  .locked .pbar i{display:block;height:100%;background:linear-gradient(90deg,var(--gold),var(--leaf));border-radius:99px}
+  .locked a.cta{display:inline-block;margin-top:16px;background:var(--weave);color:#fff;
+    text-decoration:none;font-family:'Baloo 2';font-weight:700;padding:13px 26px;border-radius:14px}
+
+  /* unlocked state */
+  .earn{display:none}
+  .earn .intro{text-align:center;margin-bottom:18px}
+  .earn .intro .fe{font-size:2.8rem}
+  .earn .intro h1{font-size:1.55rem;margin:6px 0 4px}
+  .earn .intro p{font-weight:700;color:var(--ink-soft);font-size:.92rem}
+  .namebox{background:#fff;border:2px solid var(--line);border-radius:18px;padding:16px;
+    box-shadow:var(--shadow-lg);margin-bottom:20px}
+  .namebox label{font-family:'Baloo 2';font-weight:700;display:block;margin-bottom:8px}
+  .namebox input{width:100%;border:2px solid var(--line);border-radius:13px;padding:12px 14px;
+    font-family:'Nunito';font-weight:800;font-size:1rem;color:var(--ink);background:#FDFAF3}
+  .namebox input:focus{outline:none;border-color:var(--gold)}
+  .actions{display:flex;gap:10px;margin-top:12px}
+  .actions button{flex:1;border:none;cursor:pointer;font-family:'Baloo 2';font-weight:700;
+    font-size:1rem;padding:13px;border-radius:14px;transition:transform .12s}
+  .actions button:hover{transform:translateY(-2px)}
+  .actions .printb{background:var(--gold);color:#fff;box-shadow:0 8px 20px rgba(223,162,60,.4)}
+
+  /* the certificate itself */
+  .cert{background:#FFFDF6;border:6px double var(--gold-deep);border-radius:18px;
+    padding:34px 26px;text-align:center;box-shadow:var(--shadow-lg);position:relative}
+  .cert .corner{position:absolute;font-size:1.15rem;opacity:.85}
+  .cert .c1{top:12px;left:14px}.cert .c2{top:12px;right:14px}
+  .cert .c3{bottom:12px;left:14px}.cert .c4{bottom:12px;right:14px}
+  .cert .brand{font-family:'Baloo 2';font-weight:800;font-size:.85rem;letter-spacing:.14em;
+    text-transform:uppercase;color:var(--gold-deep)}
+  .cert h2.big{font-family:'Baloo 2';font-size:1.7rem;line-height:1.1;margin:10px 0 2px}
+  .cert .award{font-family:'Baloo 2';font-weight:800;font-size:1.05rem;color:var(--weave);margin-bottom:14px}
+  .cert .certifies{font-weight:700;color:var(--ink-soft);font-size:.86rem}
+  .cert .kidname{font-family:'Caveat',cursive;font-size:2.5rem;font-weight:700;color:var(--ink);
+    border-bottom:2px solid var(--gold);display:inline-block;min-width:230px;padding:0 14px 2px;margin:8px 0 12px;min-height:52px}
+  .cert .body{font-weight:700;font-size:.92rem;max-width:380px;margin:0 auto}
+  .cert .body b{color:var(--weave)}
+  .cert .mission{font-family:'Baloo 2';font-weight:700;font-size:.9rem;color:var(--gold-deep);
+    margin:14px auto 0;max-width:360px}
+  .cert .sealrow{display:flex;justify-content:space-between;align-items:flex-end;margin-top:24px;padding:0 6px}
+  .cert .datebox{text-align:left;font-weight:800;font-size:.8rem;color:var(--ink-soft)}
+  .cert .datebox b{display:block;color:var(--ink);font-size:.9rem}
+  .cert .seal{width:76px;height:76px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#F5CE6E,var(--gold-deep));
+    display:grid;place-items:center;font-size:2rem;box-shadow:0 6px 16px rgba(184,134,11,.45);
+    border:3px solid #FFF3D6}
+  .cert .sig{text-align:right;font-weight:800;font-size:.8rem;color:var(--ink-soft)}
+  .cert .sig b{display:block;font-family:'Baloo 2';color:var(--ink);font-size:.95rem}
+
+  @media print{
+    body{background:#fff;padding:0;display:block}
+    .home,.namebox,.intro{display:none!important}
+    .app{max-width:none}
+    .cert{box-shadow:none;border-radius:0;min-height:95vh;display:flex;flex-direction:column;justify-content:center}
+  }
+</style>
+</head>
+<body>
+<div class="app">
+  <a class="home" href="index.html">← Back to all chapters</a>
+
+  <!-- LOCKED -->
+  <div class="locked" id="locked">
+    <div class="fe">🔒</div>
+    <h1>Your certificate is waiting…</h1>
+    <p>Finish all <b>8 chapters</b> of Ali and the Story-Weaver to earn your official <b>AI Explorer</b> certificate.</p>
+    <div class="pbar"><i id="lockFill"></i></div>
+    <p id="lockLabel" style="font-size:.85rem"></p>
+    <a class="cta" href="index.html">Continue the journey ✨</a>
+  </div>
+
+  <!-- UNLOCKED -->
+  <div class="earn" id="earn">
+    <div class="intro">
+      <div class="fe">🎉</div>
+      <h1>You did it! All 8 chapters!</h1>
+      <p>Type your name, then print your certificate (on a phone, Print also lets you save it as a PDF to share).</p>
+    </div>
+
+    <div class="namebox">
+      <label for="kidName">✏️ Your name, explorer:</label>
+      <input id="kidName" type="text" maxlength="40" placeholder="Write your name here…">
+      <div class="actions">
+        <button class="printb" id="printBtn" type="button">🖨️ Print my certificate</button>
+      </div>
+    </div>
+
+    <div class="cert" id="cert">
+      <span class="corner c1">🧶</span><span class="corner c2">✨</span>
+      <span class="corner c3">✨</span><span class="corner c4">🧶</span>
+      <div class="brand">IlmiTales · Series 1</div>
+      <h2 class="big">Certificate of Completion</h2>
+      <div class="award">🏅 AI Explorer 🏅</div>
+      <div class="certifies">This certifies that</div>
+      <div class="kidname" id="certName">&nbsp;</div>
+      <p class="body">has completed all <b>8 chapters</b> of <b>Ali and the Story-Weaver</b>, exploring how machines learn, see, predict, and weave - and discovering what only humans can do.</p>
+      <p class="mission">"Every great journey begins with curiosity. Every deep understanding begins with a story."</p>
+      <div class="sealrow">
+        <div class="datebox">Completed on<b id="certDate"></b></div>
+        <div class="seal">🏅</div>
+        <div class="sig">Awarded by<b>IlmiTales</b></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+(function(){
+  var done=0;
+  for(var i=1;i<=8;i++){try{if(localStorage.getItem('asw_m'+i)==='1')done++;}catch(e){}}
+  if(done<8){
+    document.getElementById('locked').style.display='block';
+    document.getElementById('lockFill').style.width=(done/8*100)+'%';
+    document.getElementById('lockLabel').textContent='You have completed '+done+' of 8 chapters';
+    return;
+  }
+  document.getElementById('earn').style.display='block';
+  if(window.plausible)plausible('certificate_view');
+
+  var input=document.getElementById('kidName'),nameEl=document.getElementById('certName');
+  var saved='';try{saved=localStorage.getItem('asw_cert_name')||'';}catch(e){}
+  function apply(v){nameEl.textContent=v.trim()||'\u00a0';}
+  input.value=saved;apply(saved);
+  input.addEventListener('input',function(){
+    apply(input.value);
+    try{localStorage.setItem('asw_cert_name',input.value);}catch(e){}
+  });
+  document.getElementById('certDate').textContent=new Date().toLocaleDateString('en-GB',{day:'numeric',month:'long',year:'numeric'});
+  document.getElementById('printBtn').addEventListener('click',function(){
+    if(!input.value.trim()){input.focus();input.placeholder='Write your name first! ✏️';return;}
+    if(window.plausible)plausible('certificate_print');
+    window.print();
+  });
+})();
+</script>
+</body>
+</html>
