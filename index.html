@@ -139,7 +139,7 @@
     <div class="brand">🧶 IlmiTales</div>
     <div class="lang">
       <button class="on" id="langEn" onclick="setLang('en')">EN</button>
-      <button id="langAr" onclick="setLang('ar')">عربي</button>
+      <a id="langAr" href="ar/" style="text-decoration:none;display:inline-block;font-family:'Baloo 2',cursive;font-weight:700;font-size:.85rem;padding:6px 14px;color:var(--ink-soft)">عربي</a>
     </div>
   </div>
 
@@ -188,7 +188,7 @@
   <footer>IlmiTales · Made with <span>♥</span> in Kuwait · <a href="feedback.html" style="color:inherit">Feedback</a></footer>
 </div>
 
-<div class="lang-toast" id="langToast">🌙 النسخة العربية قادمة قريباً<br>The Arabic version is coming soon!</div>
+
 
 <script>
 const chapters=[
@@ -239,17 +239,8 @@ if(doneCount===8){
 }
 
 function setLang(l){
-  document.getElementById('langEn').classList.toggle('on',l==='en');
-  document.getElementById('langAr').classList.toggle('on',l==='ar');
+  if(l==='ar'){window.location='ar/';return;}
   try{localStorage.setItem('asw_lang',l)}catch(e){}
-  if(l==='ar'){
-    const t=document.getElementById('langToast');
-    t.classList.add('show');
-    setTimeout(()=>{t.classList.remove('show');
-      document.getElementById('langAr').classList.remove('on');
-      document.getElementById('langEn').classList.add('on');},2600);
-    if(window.goatcounter&&window.goatcounter.count)goatcounter.count({path:'arabic_interest',event:true});
-  }
 }
 </script>
 </body>
