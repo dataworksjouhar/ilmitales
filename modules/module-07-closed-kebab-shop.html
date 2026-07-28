@@ -1,6 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<!-- Privacy-friendly analytics by Plausible (first-party proxy) -->
+<script async src="/tales/js/script.js"></script>
+<script>window.plausible=window.plausible||function(){(plausible.q=plausible.q||[]).push(arguments)},plausible.init=plausible.init||function(i){plausible.o=i||{}};plausible.init({endpoint:"/tales/api/event"})</script>
+<script data-goatcounter="https://ilmitales.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Module 7 · The Closed Kebab Shop and the Broken Thread</title>
@@ -186,7 +190,6 @@
   @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 </style>
 <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🧶</text></svg>">
-<script data-goatcounter="https://ilmitales.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 </head>
 <body>
 <div class="app">
@@ -575,7 +578,7 @@ function burst(){
   new MutationObserver(function(){
     if(res.classList.contains('show') && !res.querySelector('.asw-continue')){
       try{localStorage.setItem('asw_m7','1');}catch(e){}
-      if(window.plausible)plausible('module_complete',{props:{module:'m7'}});
+      if(window.plausible)plausible('m7_complete');
       var a=document.createElement('a');
       a.className='asw-continue';
       a.href='module-08-heart-no-story-can-weave.html';
